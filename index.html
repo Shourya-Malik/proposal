@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You be my Girlfriend?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe4e1;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            position: relative;
+        }
+        h1 {
+            color: #d63384;
+            font-size: 2.5em;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 5px;
+            position: absolute;
+        }
+        #yesBtn {
+            background-color: #28a745;
+            color: white;
+            position: relative;
+        }
+        #noBtn {
+            background-color: #dc3545;
+            color: white;
+        }
+        @keyframes confetti {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: red;
+            animation: confetti 2s linear infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will You be my Girlfriend? ❤️</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="showSurprise()">YES</button>
+            <button id="noBtn" onclick="moveNoButton()">NO</button>
+        </div>
+    </div>
+    
+    <script>
+        function moveNoButton() {
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            document.getElementById("noBtn").style.left = `${x}px`;
+            document.getElementById("noBtn").style.top = `${y}px`;
+        }
+
+        function showSurprise() {
+            document.body.innerHTML = '<h1>Yay! You said YES! 🎉</h1>';
+            for (let i = 0; i < 50; i++) {
+                let confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = Math.random() * window.innerHeight + 'px';
+                confetti.style.backgroundColor = ['#ff0', '#f00', '#0f0', '#00f', '#f0f'][Math.floor(Math.random() * 5)];
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
